@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Loop Generator + Wiki</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      background: #111;
+      color: #eee;
+      line-height: 1.6;
+    }
+    .container { max-width: 900px; margin: auto; }
+    textarea, input {
+      width: 100%;
+      margin-top: 10px;
+      padding: 12px;
+      background: #222;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 10px;
+      padding: 12px 20px;
+      background: #4caf50;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    button.copy { background: #2196f3; }
+    pre {
+      background: #000;
+      padding: 15px;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      border-left: 4px solid #4caf50;
+      min-height: 40px;
+    }
+
+    /* Estilos da Wiki */
+    .wiki-section {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+    }
+    .wiki-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: #1a1a1a;
+    }
+    .wiki-table th, .wiki-table td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid #333;
+    }
+    .wiki-table th { background: #222; color: #4caf50; }
+    code {
+      background: #333;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #ffad33;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    .tip {
+      background: #1e2a1e;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 0.9em;
+      margin-top: 10px;
+      color: #a5d6a7;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Loop Generator</h2>
+
+  <label>Quantidade de Repetições:</label>
+  <input type="number" id="repeat" value="3" min="1">
+
+  <label>Input do Template:</label>
+  <textarea id="input" rows="4">Item [[$flag + 1]]</textarea>
+
+  <button onclick="generate()">Gerar Lista</button>
+  <button class="copy" onclick="copyOutput()">Copiar Output</button>
+
+  <h3>Output:</h3>
+  <pre id="output"></pre>
+
+  <div class="wiki-section">
+    <h2>📖 Guia de Uso (Wiki)</h2>
+    <p>Use <code>[[ expressão ]]</code> para inserir cálculos ou códigos dinâmicos no seu texto.</p>
+    
+    <table class="wiki-table">
+      <thead>
+        <tr>
+          <th>Objetivo</th>
+          <th>Exemplo no Input</th>
+          <th>Resultado (na linha 0)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Índice (começa em 0)</td>
+          <td><code>ID: [[$flag]]</code></td>
+          <td>ID: 0</td>
+        </tr>
+        <tr>
+          <td>Índice (começa em 1)</td>
+          <td><code>Linha: [[$flag + 1]]</code></td>
+          <td>Linha: 1</td>
+        </tr>
+        <tr>
+          <td>Número Aleatório (0-99)</td>
+          <td><code>Cod: [[Math.floor(Math.random() * 100)]]</code></td>
+          <td>Cod: 42</td>
+        </tr>
+        <tr>
+          <td>Cálculos Matemáticos</td>
+          <td><code>Resultado: [[($flag + 1) * 10]]</code></td>
+          <td>Resultado: 10</td>
+        </tr>
+        <tr>
+          <td>Data Atual</td>
+          <td><code>Hoje: [[new Date().toLocaleDateString()]]</code></td>
+          <td>Hoje: 25/04/2026</td>
+        </tr>
+        <tr>
+          <td>Texto em Maiúsculo</td>
+          <td><code>[["item".toUpperCase()]] [[$flag]]</code></td>
+          <td>ITEM 0</td>
+        </tr>
+        <tr>
+          <td>Minecraft Componentt</td>
+          <td><code>
+"health.[[$flag + 20]]": {
+  "minecraft:health": {
+    "value": [[$flag + 20]],
+    "max": [[$flag + 20]]
+    }
+  },</code></td>
+          <td>"
+health.20": {
+  "minecraft:health": {
+    "value": 20,
+    "max": 20
+    }
+  },</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tip">
+      <strong>Dica:</strong> A variável <code>$flag</code> representa o número da repetição atual dentro do loop.
+    </div>
+  </div>
+</div>
+
+<script>
+function resolveExpression(text, i) {
+  const regex = /\[\[(.+?)\]\]/g;
+  return text.replace(regex, (match, expression) => {
+    try {
+      const finalExpr = expression.replace(/\$flag/g, i);
+      const val = eval(finalExpr);
+      return val !== undefined ? val : "";
+    } catch (err) {
+      return "[Erro]";
+    }
+  });
+}
+
+function generate() {
+  const repeat = parseInt(document.getElementById("repeat").value);
+  const input = document.getElementById("input").value;
+  const outputElement = document.getElementById("output");
+
+  if (repeat > 5000) {
+    alert("Limite de segurança: 5000 repetições.");
+    return;
+  }
+
+  outputElement.textContent = "Gerando...";
+
+  setTimeout(() => {
+    let resultArr = [];
+    for (let i = 0; i < repeat; i++) {
+      resultArr.push(resolveExpression(input, i));
+    }
+    outputElement.textContent = resultArr.join("\n");
+  }, 50);
+}
+
+function copyOutput() {
+  const text = document.getElementById("output").textContent;
+  if (!text || text === "Gerando...") return;
+  navigator.clipboard.writeText(text).then(() => alert("Copiado!"));
+}
+</script>
+
+</body>
+</html>
