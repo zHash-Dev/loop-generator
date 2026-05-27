@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#0f0f0f",
   "theme_color": "#7c3aed",
-  "description": "Loop generator for Minecraft Bedrock developers",
+  "description": "Loop generator for developers",
   "icons": [
     {
       "src": "icon-192.png",
