@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loop Generator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://plausible.io">
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+
+  <script async src="https://plausible.io/js/pa-NXGl-Pn9tm2UwcXOuY02M.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
+
+  <link rel="icon" href="favicon.ico" sizes="any"> <link rel="icon" type="image/svg+xml" href="favicon.svg"> <link rel="apple-touch-icon" href="apple-touch-icon.png"> <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#111111"> <meta name="description" content="Gere loops, templates e estruturas repetitivas rapidamente com suporte a variáveis dinâmicas e highlight de sintaxe.">
+  <meta property="og:title" content="Loop Generator — Ferramenta de Automação de Texto">
+  <meta property="og:description" content="Gere loops de código ou texto mais rápido com variáveis interativas.">
+  <meta property="og:image" content="https://zhash-dev.github.io/loop-generator/preview.png">
+  <meta property="og:url" content="https://zhash-dev.github.io/loop-generator/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Loop Generator">
+  <meta name="twitter:description" content="Generate loops and repetitive text structures faster.">
+  <meta name="twitter:image" content="https://zhash-dev.github.io/loop-generator/preview.png">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <button id="btn-nav-main" class="nav-btn active" onclick="switchPage('main')">Generator</button>
+  <button id="btn-nav-wiki" class="nav-btn" onclick="switchPage('wiki')">Wiki</button>
+</header>
+      
+<div class="container">      
+  <div id="page-main" class="page active">
+    <h2>Loop Generator</h2>      
+        
+    <label>Repetitions:</label>      
+    <input type="number" id="repeat" value="50" min="1">      
+        
+    <label style="display:block; margin-top:15px;">Input:</label>      
+    
+    <div class="editor-wrapper">
+      <div class="line-counter" id="inputLineCounter">1</div>
+      <div class="editor-container">
+        <div class="editor-backdrop" id="backdrop"></div>
+        <textarea class="editor-textarea" id="input" oninput="updateEditor()" spellcheck="false">Item [[$flag + 1]]</textarea>
+      </div>
+    </div>
+    
+    <div class="button-group"><button onclick="generate()">Generate </button>
+      <button class="copy" onclick="copyOutput()">Copy</button>
+      <button class="clear" onclick="clearInput()">Clear</button>
+      <button class="download" onclick="downloadOutput()">Download</button>
+    </div>
+
+    <div id="output-top">
+      <h3>Output:</h3>
+      <div id="output-stats" class="stats-line">0 characters | 0 lines</div>
+    </div>
+    <div class="output-wrapper">
+      <div class="line-counter" id="outputLineCounter">1</div>
+      <pre id="output"></pre>      
+    </div>
+  </div>
+</div>      
+
+<div id="toast">Mensagem aqui</div>
+
+<script src="script.js"></script>      
+</body>
+</html>

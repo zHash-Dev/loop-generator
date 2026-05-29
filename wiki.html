@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://plausible.io">
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+
+  <script async src="https://plausible.io/js/pa-NXGl-Pn9tm2UwcXOuY02M.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#111111">
+
+  <meta name="description" content="Aprenda a usar o Loop Generator. Veja exemplos práticos para Minecraft, lógica matemática, arrays e automatize seu trabalho.">
+  <meta property="og:title" content="Guia de Uso e Exemplos — Loop Generator">
+  <meta property="og:description" content="Aprenda a criar templates e loops de texto rapidamente com nossa variável $flag.">
+  <meta property="og:image" content="https://zhash-dev.github.io/loop-generator/preview.png">
+  <meta property="og:url" content="https://zhash-dev.github.io/loop-generator/wiki.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Guia de Uso — Loop Generator">
+  <meta name="twitter:description" content="Exemplos prontos e guia prático para geração de loops de texto.">
+  <meta name="twitter:image" content="https://zhash-dev.github.io/loop-generator/preview.png">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <button id="btn-nav-main" class="nav-btn" onclick="switchPage('main')">Generator</button>
+  <button id="btn-nav-wiki" class="nav-btn active" onclick="switchPage('wiki')">Wiki</button>
+</header>
+      
+<div class="container">      
+  <div id="page-wiki" class="page active">
+    <h2>User Guide (Wiki)</h2>      
+    <p>Click on any example in orange below to load it directly into the generator</p>
+    
+    <table class="wiki-table">      
+      <thead>      
+        <tr>      
+          <th>Objective</th>      
+          <th>Example (Click to use)</th>      
+          <th>Result (first line)</th>      
+        </tr>      
+      </thead>      
+      <tbody id="wiki-body">
+        </tbody>      
+    </table>      
+      
+    <div class="tip">      
+      <strong>Tip:</strong> The variable <code><u>$flag</u></code> represents the current repetition number within the loop.      
+    </div>
+  </div>
+</div>
+
+<div id="toast">Mensagem aqui</div>
+
+<script src="script.js"></script>      
+</body>
+</html>

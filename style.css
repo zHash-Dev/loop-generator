@@ -1,0 +1,276 @@
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  background: #111;
+  color: #eee;
+  line-height: 1.6;
+}
+
+/* Aplica uma fonte de código espetacular e legível no editor e outputs */
+.editor-wrapper, .output-wrapper, pre#output, .clickable-example, .result-preview {
+  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace !important;
+}
+
+/* Header & Navegação */
+header {
+  background: #1a1a1a;
+  padding: 10px 20px;
+  border-bottom: 2px solid #333;
+  display: flex;
+  gap: 15px;
+}
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: #aaa;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+.nav-btn.active {
+  color: #4caf50;
+  border-bottom: 2px solid #4caf50;
+}
+.nav-btn:hover { color: #fff; }
+
+.container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+.page { display: none; }
+.page.active { display: block; }
+
+/* Editor Avançado com Linhas e Highlight Sincronizado */
+.editor-wrapper {
+  display: flex;
+  margin-top: 10px;
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  overflow: hidden;
+  position: relative;
+}
+.line-counter {
+  background: #1a1a1a;
+  color: #555;
+  padding: 12px 8px;
+  text-align: right;
+  user-select: none;
+  border-right: 1px solid #333;
+  min-width: 30px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  box-sizing: border-box;
+}
+.editor-container {
+  position: relative;
+  flex: 1;
+  min-height: 150px;
+}
+.editor-textarea, .editor-backdrop {
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  padding: 12px;
+  border: none;
+  margin: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.editor-textarea {
+  color: transparent;
+  caret-color: #fff;
+  resize: vertical;
+  outline: none;
+  z-index: 2;
+}
+.editor-backdrop {
+  color: #fff;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Output Container com Contador de Linhas Fake */
+.output-wrapper {
+  display: flex;
+  margin-top: 10px;
+  background: #000;
+  border-left: 4px solid #4caf50;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.output-wrapper .line-counter {
+  background: #0a0a0a;
+  height: 100%;
+  padding: 15px 8px;
+}
+pre#output {
+  flex: 1;
+  margin: 0;
+  padding: 15px;
+  background: transparent;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border: none;
+  color: #eee;
+}
+
+input[type="number"], #repeat {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+#repeat:focus {
+  outline: none;
+}
+
+/* Cores do Highlight Syntax */
+.hl-bracket { color: #ff9800; font-weight: bold; }
+.hl-flag { color: #e91e63; font-weight: bold; }
+.hl-number { color: #00bcd4; }
+.hl-string { color: #4caf50; }
+
+/* Botões*/
+.button-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.button-group button {
+  margin-top: 0;
+  flex: 1;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+  padding: 12px 2px;
+  background: #4caf50;
+  border: 1px solid #444;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+button.copy { background: #2196f3; }
+button.clear { background: #ff4a4a;}
+button.download { background: #8b4aff;}
+button:hover { opacity: 0.75; scale: 0.95; }
+
+/* Estilo das estatísticas */
+#output-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 25px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+#output-top h3 {
+  margin: 0;
+}
+
+.stats-line {
+  font-size: 12px;
+  color: #888;
+  font-family: inherit;
+}  
+  
+/* Estilos da Wiki */
+.wiki-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background: #1a1a1a;
+}
+.wiki-table th, .wiki-table td {
+  text-align: left;
+  padding: 12px;
+  border: 1px solid #333;
+  vertical-align: top;
+}
+.wiki-table th { background: #222; color: #4caf50; }
+
+.clickable-example {
+  background: #252525;
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: #ffad33;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+  display: block;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  transition: background 0.2s, color 0.2s;
+  border: 1px solid #333;
+}
+.clickable-example:hover {
+  background: #333;
+  color: #fff;
+}
+.result-preview {
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-wrap;
+  color: #aaa;
+}
+
+.tip {
+  background: #1e2a1e;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  margin-top: 20px;
+  color: #a5d6a7;
+}
+
+/* Toast */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #222;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  z-index: 1000;
+  border-left: 4px solid #4caf50;
+}
+#toast.show { opacity: 1; transform: translateY(0); }
+
+/* Shake Animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-3px); }
+  40%, 80% { transform: translateX(3px); }
+}
+
+.shake-error {
+  animation: shake 0.3s ease-in-out;
+  border-color: #ff4a4a !important;
+  box-shadow: 0 0 8px rgba(255, 74, 74, 0.5);
+}
