@@ -73,12 +73,12 @@ class footer extends HTMLElement {
           <p class="zhash-copyright">
             © <span id="dynamic-year"></span> <span>zHash Dev</span>. All rights reserved.
           </p>
-          <div class="zhash-footer-links" translate="no">
-            <a href="https://zhash-dev.github.io/">Hub</a>
+          <div class="zhash-footer-links">
+            <a href="https://zhash-dev.github.io/" translate="no">Hub</a>
             <span>|</span>
-            <a href="https://zhash-dev.github.io/loop-generator/">Loop Gen</a>
+            <a href="https://zhash-dev.github.io/loop-generator/" translate="no">Loop Gen</a>
             <span>|</span>
-            <a href="https://zhash-dev.github.io/manifest-generator/">Manifest Gen</a>
+            <a href="https://zhash-dev.github.io/manifest-generator/" translate="no">Manifest Gen</a>
           </div>
         </div>
       </footer>
