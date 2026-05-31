@@ -2,7 +2,6 @@ class footer extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <style>
-        /* CSS TOTALMENTE INTEGRADO E ISOLADO */
         .zhash-footer {
           background: #1a1a1a;
           border-top: 2px solid #333;
@@ -74,7 +73,7 @@ class footer extends HTMLElement {
           <p class="zhash-copyright">
             © <span id="dynamic-year"></span> <span>zHash Dev</span>. All rights reserved.
           </p>
-          <div class="zhash-footer-links">
+          <div class="zhash-footer-links" translate="no">
             <a href="https://zhash-dev.github.io/">Hub</a>
             <span>|</span>
             <a href="https://zhash-dev.github.io/loop-generator/">Loop Gen</a>
