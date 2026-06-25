@@ -3,7 +3,7 @@
   "short_name": "LoopGen",
   "start_url": "/loop-generator/",
   "display": "standalone",
-  "background_color": "#0144b5",
+  "background_color": "#10151f",
   "theme_color": "#ffffff",
   "description": "Loop generator for developers",
   "icons": [
